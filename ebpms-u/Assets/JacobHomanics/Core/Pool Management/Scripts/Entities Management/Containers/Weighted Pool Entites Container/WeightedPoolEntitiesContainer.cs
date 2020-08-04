@@ -16,8 +16,8 @@ namespace JacobHomanics.Core.PoolManagement.EntitiesManagement.Containers
 
 					for (int x = 0; x < weightedPoolEntities.Count; x++)
 					{
-							for (int y = 0; y < weightedPoolEntities[x].poolEntities.Count; y++)
-								entities.Add(weightedPoolEntities[x].poolEntities[y]);
+							for (int y = 0; y < weightedPoolEntities[x].poolEntityManagers.Count; y++)
+								entities.Add(weightedPoolEntities[x].poolEntityManagers[y]);
 					}
 
 					return entities;
@@ -35,8 +35,8 @@ namespace JacobHomanics.Core.PoolManagement.EntitiesManagement.Containers
 				{
 					if (randomWeight >= weightedPoolEntities[x].minWeight && randomWeight < weightedPoolEntities[x].maxWeight)
 					{
-						for (int y = 0; y < weightedPoolEntities[x].poolEntities.Count; y++)
-							entities.Add(weightedPoolEntities[x].poolEntities[y]);
+						for (int y = 0; y < weightedPoolEntities[x].poolEntityManagers.Count; y++)
+							entities.Add(weightedPoolEntities[x].poolEntityManagers[y]);
 					}
 				}
 

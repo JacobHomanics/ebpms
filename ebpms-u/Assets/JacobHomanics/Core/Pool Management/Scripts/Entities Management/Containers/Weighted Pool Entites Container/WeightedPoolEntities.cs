@@ -5,7 +5,7 @@ namespace JacobHomanics.Core.PoolManagement.EntitiesManagement.Containers.Weight
 	[System.Serializable]
 	public class WeightedPoolEntities
 	{
-		public List<PoolEntityManager> poolEntities = new List<PoolEntityManager>();
+		public List<PoolEntityManager> poolEntityManagers = new List<PoolEntityManager>();
 
 		public float minWeight;
 		public float maxWeight;

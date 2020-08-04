@@ -11,10 +11,12 @@ namespace JacobHomanics.Core.PoolManagement
 
 		[Header("Events")]
 		public Initialized Initialized;
-		public Despawned Despawned;
+		public DespawnedAll DespawnedAll;
 		public Terminated Terminated;
+		public OnInitialized OnInitialized;
 		public OnSpawned OnSpawned;
 		public OnDespawned OnDespawned;
+		public OnTerminated OnTerminated;
 
 		[ContextMenu("Initialize")]
 		public void Initialize()
@@ -34,7 +36,9 @@ namespace JacobHomanics.Core.PoolManagement
 		{
 			entity.OnSpawned.AddListener(OnSpawn);
 			entity.OnDespawned.AddListener(_OnDespawn);
-			entity.Terminated.AddListener(OnTerminated);
+			entity.Terminated.AddListener(_OnTerminated);
+			OnInitialized?.Invoke(this, entity);
+
 		}
 
 		[ContextMenu("Terminate")]
@@ -48,11 +52,12 @@ namespace JacobHomanics.Core.PoolManagement
 			Terminated?.Invoke(this, entities);
 		}
 
-		private void OnTerminated(PoolEntityManager entity)
+		private void _OnTerminated(PoolEntityManager entity)
 		{
 			entity.OnSpawned.RemoveListener(OnSpawn);
 			entity.OnDespawned.RemoveListener(_OnDespawn);
-			entity.Terminated.RemoveListener(OnTerminated);
+			entity.Terminated.RemoveListener(_OnTerminated);
+			OnTerminated?.Invoke(this, entity);
 		}
 
 		[ContextMenu("Spawn")]
@@ -71,8 +76,8 @@ namespace JacobHomanics.Core.PoolManagement
 			OnDespawned?.Invoke(this, entity, instance);
 		}
 
-		[ContextMenu("Despawn")]
-		public void Despawn()
+		[ContextMenu("Despawn All")]
+		public void DespawnAll()
 		{
 			var entities = container.GetAllEntities;
 
@@ -81,7 +86,7 @@ namespace JacobHomanics.Core.PoolManagement
 				entities[x].DespawnAll();
 			}
 
-			Despawned?.Invoke(this, entities);
+			DespawnedAll?.Invoke(this, entities);
 		}
 	}
 }

@@ -13,6 +13,7 @@ namespace JacobHomanics.Core.PoolManagement
 		public enum OverflowType { Expandable, Recycable }
 		public OverflowType overflowType;
 
+
 		private List<PoolEntity> _readyInstance = new List<PoolEntity>();
 		public List<PoolEntity> ReadyInstances
 		{
@@ -93,7 +94,6 @@ namespace JacobHomanics.Core.PoolManagement
 		private PoolEntity CreateAndInitializeInstance()
 		{
 			var instance = Instantiate(poolEntity);
-			instance.Initialized.AddListener(_OnInitialized);
 			Initialize(instance);
 			return instance;
 		}
@@ -137,7 +137,6 @@ namespace JacobHomanics.Core.PoolManagement
 		{
 			ReadyInstances.Remove(instance);
 			ActiveInstances.Add(instance);
-
 			instance.Spawned.RemoveListener(OnSpawn);
 			instance.Despawned.AddListener(_OnDespawn);
 
@@ -199,6 +198,16 @@ namespace JacobHomanics.Core.PoolManagement
 
 			OnTerminated?.Invoke(this, instance);
 			Destroy(instance.gameObject);
+		}
+
+		public void SetOverflowTypeToExpandable()
+		{
+			overflowType = OverflowType.Expandable;
+		}
+
+		public void SetOverflowTypeToRecyclable()
+		{
+			overflowType = OverflowType.Recycable;
 		}
 	}
 }
