@@ -4,6 +4,6 @@
 	public class SpawningEvents
 	{
 		public Spawning Spawning = new Spawning();
-		public OnSpawned OnEntitySpawned = new OnSpawned();
+		public OnEntitySpawned OnEntitySpawned = new OnEntitySpawned();
 	}
 }
