@@ -77,7 +77,7 @@ namespace JacobHomanics.Core.PoolManagement
 				var instance = CreateAndInitializeInstance();
 			}
 
-			InitializationEvents.Initialized?.Invoke(this, ReadyInstances);
+			Initialized?.Invoke(this, ReadyInstances);
 		}
 
 		private void Initialize(PoolEntity instance)
@@ -93,7 +93,7 @@ namespace JacobHomanics.Core.PoolManagement
 
 			ReadyInstances.Add(instance);
 
-			InitializationEvents.OnEntityInitialized?.Invoke(this, instance);
+			OnEntityInitialized?.Invoke(this, instance);
 		}
 
 		private PoolEntity CreateAndInitializeInstance()
@@ -114,7 +114,7 @@ namespace JacobHomanics.Core.PoolManagement
 			for (int x = 0; x < riCount; x++)
 				ReadyInstances[0].Terminate();
 
-			TerminationEvents.Terminated?.Invoke(this);
+			Terminated?.Invoke(this);
 		}
 
 
@@ -129,7 +129,7 @@ namespace JacobHomanics.Core.PoolManagement
 				ActiveInstances[0].Despawn();
 			}
 
-			DespawningEvents.DespawnedAll?.Invoke(this, despawned);
+			DespawnedAll?.Invoke(this, despawned);
 		}
 
 		public void _HandlePreSpawn(PoolEntity instance)
@@ -147,14 +147,14 @@ namespace JacobHomanics.Core.PoolManagement
 
 			instance.Despawned.AddListener(_OnDespawn);
 			instance.Spawned.AddListener(OnSpawn);
-			SpawningEvents.Spawning?.Invoke(this, instance);
+			Spawning?.Invoke(this, instance);
 
 			instance.Spawn();
 		}
 
 		private void OnSpawn(PoolEntity instance)
 		{
-			SpawningEvents.OnEntitySpawned?.Invoke(this, instance);
+			OnEntitySpawned?.Invoke(this, instance);
 			instance.Spawned.RemoveListener(OnSpawn);
 		}
 
@@ -165,7 +165,7 @@ namespace JacobHomanics.Core.PoolManagement
 
 			instance.Despawned.RemoveListener(_OnDespawn);
 
-			DespawningEvents.OnEntityDespawned?.Invoke(this, instance);
+			OnEntityDespawned?.Invoke(this, instance);
 		}
 
 		private PoolEntity GetInstance()
@@ -208,7 +208,7 @@ namespace JacobHomanics.Core.PoolManagement
 			else if (ActiveInstances.Contains(instance))
 				ActiveInstances.Remove(instance);
 
-			TerminationEvents.OnEntityTerminated?.Invoke(this, instance);
+			OnEntityTerminated?.Invoke(this, instance);
 			Destroy(instance.gameObject);
 		}
 
