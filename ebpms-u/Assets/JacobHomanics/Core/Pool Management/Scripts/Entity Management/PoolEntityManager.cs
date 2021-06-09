@@ -61,7 +61,7 @@ namespace JacobHomanics.Core.PoolManagement
 		public OnEntityDespawned OnEntityDespawned{ get { return DespawningEvents.OnEntityDespawned; } set { DespawningEvents.OnEntityDespawned = value; } }
 
 		public Terminated Terminated { get { return TerminationEvents.Terminated; } set { TerminationEvents.Terminated = value; } }
-		public OnEntityTerminated OnEntityTerminated { get { return TerminationEvents.OnEntityTerminated; } set { TerminationEvents.Terminated = value; } }
+		public OnEntityTerminated OnEntityTerminated { get { return TerminationEvents.OnEntityTerminated; } set { TerminationEvents.OnEntityTerminated = value; } }
 
 		public void Initialize(PoolEntitiesManager poolEntityManager)
 		{
