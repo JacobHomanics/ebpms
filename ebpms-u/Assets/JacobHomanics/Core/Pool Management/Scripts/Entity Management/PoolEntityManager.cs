@@ -47,15 +47,15 @@ namespace JacobHomanics.Core.PoolManagement
 
 		[Header("Events")]
 		public InitializationEvents InitializationEvents = new InitializationEvents();
-		public SpawningEvents SpawningEvents = new SpawningEvents();
+		public SpawnEvents SpawnEvents = new SpawnEvents();
 		public DespawningEvents DespawningEvents = new DespawningEvents();
 		public TerminationEvents TerminationEvents = new TerminationEvents();
 
 		public Initialized Initialized { get { return InitializationEvents.Initialized; } set { InitializationEvents.Initialized = value; } }
 		public OnEntityInitialized OnEntityInitialized { get { return InitializationEvents.OnEntityInitialized; } set { InitializationEvents.OnEntityInitialized = value; } }
 
-		public Spawning Spawning { get { return SpawningEvents.Spawning; } set { SpawningEvents.Spawning = value; } }		
-		public OnEntitySpawned OnEntitySpawned { get { return SpawningEvents.OnEntitySpawned; } set { SpawningEvents.OnEntitySpawned = value; } }
+		public Spawning Spawning { get { return SpawnEvents.Spawning; } set { SpawnEvents.Spawning = value; } }		
+		public OnEntitySpawned OnEntitySpawned { get { return SpawnEvents.OnEntitySpawned; } set { SpawnEvents.OnEntitySpawned = value; } }
 
 		public DespawnedAll DespawnedAll { get { return DespawningEvents.DespawnedAll; } set { DespawningEvents.DespawnedAll = value; } }
 		public OnEntityDespawned OnEntityDespawned{ get { return DespawningEvents.OnEntityDespawned; } set { DespawningEvents.OnEntityDespawned = value; } }
