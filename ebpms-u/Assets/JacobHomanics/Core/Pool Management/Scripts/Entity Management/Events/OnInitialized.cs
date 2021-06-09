@@ -3,7 +3,7 @@
 namespace JacobHomanics.Core.PoolManagement.EntityManagement.Events
 {
 	[System.Serializable]
-	public class OnInitialized : UnityEvent<PoolEntityManager, PoolEntity>
+	public class OnEntityInitialized : UnityEvent<PoolEntityManager, PoolEntity>
 	{
 		
 	}

@@ -25,19 +25,19 @@ namespace JacobHomanics.Core.PoolManagement
 
 			for (int x = 0; x < entities.Count; x++)
 			{
-				entities[x].Initialized.AddListener(OnInitialize);
+				entities[x].InitializationEvents.Initialized.AddListener(OnInitialize);
 				entities[x].Initialize(this);
 			}
 
 			Initialized?.Invoke(this, entities);
 		}
 
-		private void OnInitialize(PoolEntityManager entity, List<PoolEntity> instances)
+		private void OnInitialize(PoolEntityManager entityManager, List<PoolEntity> instances)
 		{
-			entity.OnSpawned.AddListener(OnSpawn);
-			entity.OnDespawned.AddListener(_OnDespawn);
-			entity.Terminated.AddListener(_OnTerminated);
-			OnInitialized?.Invoke(this, entity);
+			entityManager.SpawningEvents.OnEntitySpawned.AddListener(OnSpawn);
+			entityManager.DespawningEvents.OnEntityDespawned.AddListener(_OnDespawn);
+			entityManager.TerminationEvents.Terminated.AddListener(_OnTerminated);
+			OnInitialized?.Invoke(this, entityManager);
 
 		}
 
@@ -52,12 +52,12 @@ namespace JacobHomanics.Core.PoolManagement
 			Terminated?.Invoke(this, entities);
 		}
 
-		private void _OnTerminated(PoolEntityManager entity)
+		private void _OnTerminated(PoolEntityManager entityManager)
 		{
-			entity.OnSpawned.RemoveListener(OnSpawn);
-			entity.OnDespawned.RemoveListener(_OnDespawn);
-			entity.Terminated.RemoveListener(_OnTerminated);
-			OnTerminated?.Invoke(this, entity);
+			entityManager.SpawningEvents.OnEntitySpawned.RemoveListener(OnSpawn);
+			entityManager.DespawningEvents.OnEntityDespawned.RemoveListener(_OnDespawn);
+			entityManager.TerminationEvents.Terminated.RemoveListener(_OnTerminated);
+			OnTerminated?.Invoke(this, entityManager);
 		}
 
 		[ContextMenu("Spawn")]

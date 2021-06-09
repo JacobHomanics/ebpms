@@ -8,7 +8,7 @@ namespace JacobHomanics.Core.PoolManagement
 	{
 		[Header("Properties")]
 		public PoolEntity poolEntity;
-		public int initialInstanceCount =  1;
+		public int initialInstanceCount = 1;
 
 		public enum OverflowType { Expandable, Recycable }
 		public OverflowType overflowType;
@@ -17,13 +17,15 @@ namespace JacobHomanics.Core.PoolManagement
 		private List<PoolEntity> _readyInstance = new List<PoolEntity>();
 		public List<PoolEntity> ReadyInstances
 		{
-			get { return _readyInstance; } private set { _readyInstance = value; }
+			get { return _readyInstance; }
+			private set { _readyInstance = value; }
 		}
 
 		private List<PoolEntity> _activeInstances = new List<PoolEntity>();
 		public List<PoolEntity> ActiveInstances
 		{
-			get { return _activeInstances; } private set { _activeInstances = value; }
+			get { return _activeInstances; }
+			private set { _activeInstances = value; }
 		}
 
 		public List<PoolEntity> AllInstances
@@ -41,19 +43,19 @@ namespace JacobHomanics.Core.PoolManagement
 			}
 		}
 
-		[Header("Events")]
-		public Initialized Initialized;
-		public DespawnedAll DespawnedAll;
-		public Terminated Terminated;
-		public OnSpawned OnSpawned;
-		public OnDespawned OnDespawned;
-		public OnTerminated OnTerminated;
-		public OnInitialized OnInitialized;
-
 		public PoolEntitiesManager PoolEntitiesManager { get; private set; }
 
-		public PoolEntity LastSpawned { get; private set; }
-		public PoolEntity LastDespawned { get; private set; }
+		[Header("Events")]
+		public InitializationEvents InitializationEvents = new InitializationEvents();
+		public SpawningEvents SpawningEvents = new SpawningEvents();
+		public DespawningEvents DespawningEvents = new DespawningEvents();
+		public TerminationEvents TerminationEvents = new TerminationEvents();
+
+		public OnEntityInitialized OnEntityInitialized
+		{
+			get { return InitializationEvents.OnEntityInitialized; }
+			set { InitializationEvents.OnEntityInitialized = value; }
+		}
 
 		public void Initialize(PoolEntitiesManager poolEntityManager)
 		{
@@ -69,26 +71,23 @@ namespace JacobHomanics.Core.PoolManagement
 				var instance = CreateAndInitializeInstance();
 			}
 
-			Initialized?.Invoke(this, ReadyInstances);
+			InitializationEvents.Initialized?.Invoke(this, ReadyInstances);
 		}
 
 		private void Initialize(PoolEntity instance)
 		{
-			instance.Initialized.AddListener(_OnInitialized);
+			instance.Initialized.AddListener(OnInitialized);
 			instance.Initialize(this);
-
 		}
 
-		private void _OnInitialized(PoolEntity instance)
+		private void OnInitialized(PoolEntity instance)
 		{
-			instance.Initialized.RemoveListener(_OnInitialized);
-
-			instance.Spawned.AddListener(OnSpawn);
+			instance.Initialized.RemoveListener(OnInitialized);
 			instance.Terminated.AddListener(_OnTerminated);
+
 			ReadyInstances.Add(instance);
 
-			OnInitialized?.Invoke(this, instance);
-
+			InitializationEvents.OnEntityInitialized?.Invoke(this, instance);
 		}
 
 		private PoolEntity CreateAndInitializeInstance()
@@ -109,15 +108,10 @@ namespace JacobHomanics.Core.PoolManagement
 			for (int x = 0; x < riCount; x++)
 				ReadyInstances[0].Terminate();
 
-			Terminated?.Invoke(this);
+			TerminationEvents.Terminated?.Invoke(this);
 		}
 
-		[ContextMenu("Spawn")]
-		public void Spawn()
-		{
-			var instance = GetInstance();
-			instance.Spawn();
-		}
+
 
 		[ContextMenu("Despawn All")]
 		public void DespawnAll()
@@ -129,19 +123,33 @@ namespace JacobHomanics.Core.PoolManagement
 				ActiveInstances[0].Despawn();
 			}
 
-			DespawnedAll?.Invoke(this, despawned);
+			DespawningEvents.DespawnedAll?.Invoke(this, despawned);
 		}
 
+		public void _HandlePreSpawn(PoolEntity instance)
+		{
+
+		}
+
+		[ContextMenu("Spawn")]
+		public void Spawn()
+		{
+			var instance = GetInstance();
+
+			ReadyInstances.Remove(instance);
+			ActiveInstances.Add(instance);
+
+			instance.Despawned.AddListener(_OnDespawn);
+			instance.Spawned.AddListener(OnSpawn);
+			SpawningEvents.Spawning?.Invoke(this, instance);
+
+			instance.Spawn();
+		}
 
 		private void OnSpawn(PoolEntity instance)
 		{
-			ReadyInstances.Remove(instance);
-			ActiveInstances.Add(instance);
+			SpawningEvents.OnEntitySpawned?.Invoke(this, instance);
 			instance.Spawned.RemoveListener(OnSpawn);
-			instance.Despawned.AddListener(_OnDespawn);
-
-			LastSpawned = instance;
-			OnSpawned?.Invoke(this, instance);
 		}
 
 		private void _OnDespawn(PoolEntity instance)
@@ -149,11 +157,9 @@ namespace JacobHomanics.Core.PoolManagement
 			ActiveInstances.Remove(instance);
 			ReadyInstances.Add(instance);
 
-			instance.Spawned.AddListener(OnSpawn);
 			instance.Despawned.RemoveListener(_OnDespawn);
 
-			LastDespawned = instance;
-			OnDespawned?.Invoke(this, instance);
+			DespawningEvents.OnEntityDespawned?.Invoke(this, instance);
 		}
 
 		private PoolEntity GetInstance()
@@ -196,7 +202,7 @@ namespace JacobHomanics.Core.PoolManagement
 			else if (ActiveInstances.Contains(instance))
 				ActiveInstances.Remove(instance);
 
-			OnTerminated?.Invoke(this, instance);
+			TerminationEvents.OnEntityTerminated?.Invoke(this, instance);
 			Destroy(instance.gameObject);
 		}
 
