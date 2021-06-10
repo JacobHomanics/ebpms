@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using JacobHomanics.Core.PoolManagement.Entity.Events;
+using UnityEngine.Serialization;
 
 namespace JacobHomanics.Core.PoolManagement
 {
 	public class PoolEntity : MonoBehaviour
 	{
-		public Events Events = new Events();
+		public Events events = new Events();
 
-		public Initialized Initialized { get { return Events.Initialized; } set { Events.Initialized = value; } }
-		public Spawned Spawned { get { return Events.Spawned; } set { Events.Spawned = value; } }
-		public Despawned Despawned { get { return Events.Despawned; } set { Events.Despawned = value; } }
-		public Terminated Terminated { get { return Events.Terminated; } set { Events.Terminated = value; } }
+		public Initialized Initialized { get { return events.Initialized; } set { events.Initialized = value; } }
+		public Spawned Spawned { get { return events.Spawned; } set { events.Spawned = value; } }
+		public Despawned Despawned { get { return events.Despawned; } set { events.Despawned = value; } }
+		public Terminated Terminated { get { return events.Terminated; } set { events.Terminated = value; } }
 
 		public PoolEntityManager PoolEntityManager { get; private set; }
 
