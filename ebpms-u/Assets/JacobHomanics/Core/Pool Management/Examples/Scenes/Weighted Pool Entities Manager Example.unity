@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 537202084}
   - component: {fileID: 537202083}
   m_Layer: 0
-  m_Name: Despawn Particle System (3)
+  m_Name: Despawn Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +251,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4979,7 +4978,7 @@ GameObject:
   - component: {fileID: 565923357}
   - component: {fileID: 565923356}
   m_Layer: 0
-  m_Name: Despawn Particle System (1)
+  m_Name: Despawn Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5005,7 +5004,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9719,7 +9717,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2907356131319312897}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &838528073
 GameObject:
@@ -19241,7 +19239,7 @@ GameObject:
   - component: {fileID: 1122681424}
   - component: {fileID: 1122681423}
   m_Layer: 0
-  m_Name: Spawn Particle System (3)
+  m_Name: Spawn Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19267,7 +19265,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23995,7 +23992,7 @@ GameObject:
   - component: {fileID: 1200772278}
   - component: {fileID: 1200772277}
   m_Layer: 0
-  m_Name: Despawn Particle System (2)
+  m_Name: Despawn Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24021,7 +24018,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28735,7 +28731,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1531040846}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1285730668
 GameObject:
@@ -28906,60 +28902,68 @@ MonoBehaviour:
     type: 3}
   initialInstanceCount: 3
   overflowType: 0
-  Initialized:
-    m_PersistentCalls:
-      m_Calls: []
-  DespawnedAll:
-    m_PersistentCalls:
-      m_Calls: []
-  Terminated:
-    m_PersistentCalls:
-      m_Calls: []
-  OnSpawned:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1702053411}
-        m_MethodName: OnSpawn
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2093528475}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnDespawned:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1200772278}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnTerminated:
-    m_PersistentCalls:
-      m_Calls: []
-  OnInitialized:
-    m_PersistentCalls:
-      m_Calls: []
+  Events:
+    InitializationEvents:
+      Initialized:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntityInitialized:
+        m_PersistentCalls:
+          m_Calls: []
+    SpawnEvents:
+      Spawning:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntitySpawned:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1702053411}
+            m_MethodName: OnSpawn
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 2093528475}
+            m_MethodName: Play
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    DespawnEvents:
+      DespawnedAll:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntityDespawned:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1200772278}
+            m_MethodName: Play
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    TerminationEvents:
+      Terminated:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntityTerminated:
+        m_PersistentCalls:
+          m_Calls: []
 --- !u!4 &1531040846
 Transform:
   m_ObjectHideFlags: 0
@@ -28972,8 +28976,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1702053412}
-  - {fileID: 1200772279}
   - {fileID: 2093528476}
+  - {fileID: 1200772279}
   m_Father: {fileID: 1701539695}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29254,7 +29258,7 @@ GameObject:
   - component: {fileID: 1777491972}
   - component: {fileID: 1777491971}
   m_Layer: 0
-  m_Name: Spawn Particle System (1)
+  m_Name: Spawn Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29280,7 +29284,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33994,7 +33997,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2907356131319312897}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1959781519
 GameObject:
@@ -34091,7 +34094,7 @@ GameObject:
   - component: {fileID: 2093528475}
   - component: {fileID: 2093528474}
   m_Layer: 0
-  m_Name: Spawn Particle System (2)
+  m_Name: Spawn Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34117,7 +34120,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -38831,7 +38833,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1531040846}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &2100088033
 GameObject:
@@ -38909,60 +38911,68 @@ MonoBehaviour:
     type: 3}
   initialInstanceCount: 3
   overflowType: 0
-  Initialized:
-    m_PersistentCalls:
-      m_Calls: []
-  DespawnedAll:
-    m_PersistentCalls:
-      m_Calls: []
-  Terminated:
-    m_PersistentCalls:
-      m_Calls: []
-  OnSpawned:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1526203292}
-        m_MethodName: OnSpawn
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1122681424}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnDespawned:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 537202084}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnTerminated:
-    m_PersistentCalls:
-      m_Calls: []
-  OnInitialized:
-    m_PersistentCalls:
-      m_Calls: []
+  Events:
+    InitializationEvents:
+      Initialized:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntityInitialized:
+        m_PersistentCalls:
+          m_Calls: []
+    SpawnEvents:
+      Spawning:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntitySpawned:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1526203292}
+            m_MethodName: OnSpawn
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 1122681424}
+            m_MethodName: Play
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    DespawnEvents:
+      DespawnedAll:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntityDespawned:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 537202084}
+            m_MethodName: Play
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    TerminationEvents:
+      Terminated:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntityTerminated:
+        m_PersistentCalls:
+          m_Calls: []
 --- !u!4 &2106680001
 Transform:
   m_ObjectHideFlags: 0
@@ -38992,8 +39002,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2100088035}
-  - {fileID: 565923358}
   - {fileID: 1777491973}
+  - {fileID: 565923358}
   m_Father: {fileID: 1701539695}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -39013,60 +39023,68 @@ MonoBehaviour:
     type: 3}
   initialInstanceCount: 3
   overflowType: 0
-  Initialized:
-    m_PersistentCalls:
-      m_Calls: []
-  DespawnedAll:
-    m_PersistentCalls:
-      m_Calls: []
-  Terminated:
-    m_PersistentCalls:
-      m_Calls: []
-  OnSpawned:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2100088034}
-        m_MethodName: OnSpawn
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1777491972}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnDespawned:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 565923357}
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnTerminated:
-    m_PersistentCalls:
-      m_Calls: []
-  OnInitialized:
-    m_PersistentCalls:
-      m_Calls: []
+  Events:
+    InitializationEvents:
+      Initialized:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntityInitialized:
+        m_PersistentCalls:
+          m_Calls: []
+    SpawnEvents:
+      Spawning:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntitySpawned:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 2100088034}
+            m_MethodName: OnSpawn
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 1777491972}
+            m_MethodName: Play
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    DespawnEvents:
+      DespawnedAll:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntityDespawned:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 565923357}
+            m_MethodName: Play
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    TerminationEvents:
+      Terminated:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntityTerminated:
+        m_PersistentCalls:
+          m_Calls: []
 --- !u!1 &5323294734169727486
 GameObject:
   m_ObjectHideFlags: 0
