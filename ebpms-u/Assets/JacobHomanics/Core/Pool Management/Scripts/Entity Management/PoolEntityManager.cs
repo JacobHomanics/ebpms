@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using JacobHomanics.Core.PoolManagement.EntityManagement.Events;
-using UnityEngine.Serialization;
 
 namespace JacobHomanics.Core.PoolManagement
 {
@@ -142,25 +141,32 @@ namespace JacobHomanics.Core.PoolManagement
 			ReadyInstances.Remove(instance);
 			ActiveInstances.Add(instance);
 
-			instance.Despawned.AddListener(_OnDespawn);
+			instance.Despawned.AddListener(OnDespawn);
 			instance.Spawned.AddListener(OnSpawn);
 			Spawning?.Invoke(this, instance);
 
 			instance.Spawn();
 		}
 
+		public PoolEntity LastSpawned { get; private set; }
+		public PoolEntity LastDespawned { get; private set; }
+
 		private void OnSpawn(PoolEntity instance)
 		{
-			OnEntitySpawned?.Invoke(this, instance);
 			instance.Spawned.RemoveListener(OnSpawn);
+			LastSpawned = instance;
+
+			OnEntitySpawned?.Invoke(this, instance);
 		}
 
-		private void _OnDespawn(PoolEntity instance)
+		private void OnDespawn(PoolEntity instance)
 		{
 			ActiveInstances.Remove(instance);
 			ReadyInstances.Add(instance);
 
-			instance.Despawned.RemoveListener(_OnDespawn);
+			instance.Despawned.RemoveListener(OnDespawn);
+
+			LastDespawned = instance;
 
 			OnEntityDespawned?.Invoke(this, instance);
 		}
@@ -197,7 +203,7 @@ namespace JacobHomanics.Core.PoolManagement
 		private void _OnTerminated(PoolEntity instance)
 		{
 			instance.Spawned.RemoveListener(OnSpawn);
-			instance.Despawned.RemoveListener(_OnDespawn);
+			instance.Despawned.RemoveListener(OnDespawn);
 			instance.Terminated.RemoveListener(_OnTerminated);
 
 			if (ReadyInstances.Contains(instance))

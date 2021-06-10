@@ -4964,7 +4964,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2106680001}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &565923355
 GameObject:
@@ -23978,7 +23978,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2106680001}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1200772276
 GameObject:
@@ -28902,7 +28902,7 @@ MonoBehaviour:
     type: 3}
   initialInstanceCount: 3
   overflowType: 0
-  Events:
+  events:
     InitializationEvents:
       Initialized:
         m_PersistentCalls:
@@ -38911,7 +38911,7 @@ MonoBehaviour:
     type: 3}
   initialInstanceCount: 3
   overflowType: 0
-  Events:
+  events:
     InitializationEvents:
       Initialized:
         m_PersistentCalls:
@@ -38985,8 +38985,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1526203293}
-  - {fileID: 537202085}
   - {fileID: 1122681425}
+  - {fileID: 537202085}
   m_Father: {fileID: 1701539695}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -39023,7 +39023,7 @@ MonoBehaviour:
     type: 3}
   initialInstanceCount: 3
   overflowType: 0
-  Events:
+  events:
     InitializationEvents:
       Initialized:
         m_PersistentCalls:

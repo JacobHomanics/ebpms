@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 537202084}
   - component: {fileID: 537202083}
   m_Layer: 0
-  m_Name: Despawn Particle System (3)
+  m_Name: Despawn Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +251,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4979,7 +4978,7 @@ GameObject:
   - component: {fileID: 565923357}
   - component: {fileID: 565923356}
   m_Layer: 0
-  m_Name: Despawn Particle System (1)
+  m_Name: Despawn Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5005,7 +5004,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19239,7 +19237,7 @@ GameObject:
   - component: {fileID: 1122681424}
   - component: {fileID: 1122681423}
   m_Layer: 0
-  m_Name: Spawn Particle System (3)
+  m_Name: Spawn Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23992,7 +23990,7 @@ GameObject:
   - component: {fileID: 1200772278}
   - component: {fileID: 1200772277}
   m_Layer: 0
-  m_Name: Despawn Particle System (2)
+  m_Name: Despawn Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24018,7 +24016,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28903,7 +28900,7 @@ MonoBehaviour:
     type: 3}
   initialInstanceCount: 3
   overflowType: 0
-  Events:
+  events:
     InitializationEvents:
       Initialized:
         m_PersistentCalls:
@@ -29253,7 +29250,7 @@ GameObject:
   - component: {fileID: 1777491972}
   - component: {fileID: 1777491971}
   m_Layer: 0
-  m_Name: Spawn Particle System (1)
+  m_Name: Spawn Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34089,7 +34086,7 @@ GameObject:
   - component: {fileID: 2093528475}
   - component: {fileID: 2093528474}
   m_Layer: 0
-  m_Name: Spawn Particle System (2)
+  m_Name: Spawn Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38906,7 +38903,7 @@ MonoBehaviour:
     type: 3}
   initialInstanceCount: 3
   overflowType: 0
-  Events:
+  events:
     InitializationEvents:
       Initialized:
         m_PersistentCalls:
@@ -39018,7 +39015,7 @@ MonoBehaviour:
     type: 3}
   initialInstanceCount: 3
   overflowType: 0
-  Events:
+  events:
     InitializationEvents:
       Initialized:
         m_PersistentCalls:

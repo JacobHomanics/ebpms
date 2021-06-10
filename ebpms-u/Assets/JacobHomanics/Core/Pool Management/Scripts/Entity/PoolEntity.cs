@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using JacobHomanics.Core.PoolManagement.Entity.Events;
-using UnityEngine.Serialization;
 
 namespace JacobHomanics.Core.PoolManagement
 {
