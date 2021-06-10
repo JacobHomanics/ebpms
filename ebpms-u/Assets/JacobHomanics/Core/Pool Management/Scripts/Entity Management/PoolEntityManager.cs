@@ -45,23 +45,19 @@ namespace JacobHomanics.Core.PoolManagement
 
 		public PoolEntitiesManager PoolEntitiesManager { get; private set; }
 
-		[Header("Events")]
-		public InitializationEvents InitializationEvents = new InitializationEvents();
-		public SpawnEvents SpawnEvents = new SpawnEvents();
-		public DespawnEvents DespawnEvents = new DespawnEvents();
-		public TerminationEvents TerminationEvents = new TerminationEvents();
+		public Events Events = new Events();
 
-		public Initialized Initialized { get { return InitializationEvents.Initialized; } set { InitializationEvents.Initialized = value; } }
-		public OnEntityInitialized OnEntityInitialized { get { return InitializationEvents.OnEntityInitialized; } set { InitializationEvents.OnEntityInitialized = value; } }
+		public Initialized Initialized { get { return Events.InitializationEvents.Initialized; } set { Events.InitializationEvents.Initialized = value; } }
+		public OnEntityInitialized OnEntityInitialized { get { return Events.InitializationEvents.OnEntityInitialized; } set { Events.InitializationEvents.OnEntityInitialized = value; } }
 
-		public Spawning Spawning { get { return SpawnEvents.Spawning; } set { SpawnEvents.Spawning = value; } }		
-		public OnEntitySpawned OnEntitySpawned { get { return SpawnEvents.OnEntitySpawned; } set { SpawnEvents.OnEntitySpawned = value; } }
+		public Spawning Spawning { get { return Events.SpawnEvents.Spawning; } set { Events.SpawnEvents.Spawning = value; } }		
+		public OnEntitySpawned OnEntitySpawned { get { return Events.SpawnEvents.OnEntitySpawned; } set { Events.SpawnEvents.OnEntitySpawned = value; } }
 
-		public DespawnedAll DespawnedAll { get { return DespawnEvents.DespawnedAll; } set { DespawnEvents.DespawnedAll = value; } }
-		public OnEntityDespawned OnEntityDespawned{ get { return DespawnEvents.OnEntityDespawned; } set { DespawnEvents.OnEntityDespawned = value; } }
+		public DespawnedAll DespawnedAll { get { return Events.DespawnEvents.DespawnedAll; } set { Events.DespawnEvents.DespawnedAll = value; } }
+		public OnEntityDespawned OnEntityDespawned{ get { return Events.DespawnEvents.OnEntityDespawned; } set { Events.DespawnEvents.OnEntityDespawned = value; } }
 
-		public Terminated Terminated { get { return TerminationEvents.Terminated; } set { TerminationEvents.Terminated = value; } }
-		public OnEntityTerminated OnEntityTerminated { get { return TerminationEvents.OnEntityTerminated; } set { TerminationEvents.OnEntityTerminated = value; } }
+		public Terminated Terminated { get { return Events.TerminationEvents.Terminated; } set { Events.TerminationEvents.Terminated = value; } }
+		public OnEntityTerminated OnEntityTerminated { get { return Events.TerminationEvents.OnEntityTerminated; } set { Events.TerminationEvents.OnEntityTerminated = value; } }
 
 		public void Initialize(PoolEntitiesManager poolEntityManager)
 		{
