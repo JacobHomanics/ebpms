@@ -1688,45 +1688,46 @@ MonoBehaviour:
     type: 3}
   initialInstanceCount: 3
   overflowType: 0
-  InitializationEvents:
-    Initialized:
-      m_PersistentCalls:
-        m_Calls: []
-    OnEntityInitialized:
-      m_PersistentCalls:
-        m_Calls: []
-  SpawnEvents:
-    Spawning:
-      m_PersistentCalls:
-        m_Calls: []
-    OnEntitySpawned:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2100088034}
-          m_MethodName: OnSpawn
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  DespawnEvents:
-    DespawnedAll:
-      m_PersistentCalls:
-        m_Calls: []
-    OnEntityDespawned:
-      m_PersistentCalls:
-        m_Calls: []
-  TerminationEvents:
-    Terminated:
-      m_PersistentCalls:
-        m_Calls: []
-    OnEntityTerminated:
-      m_PersistentCalls:
-        m_Calls: []
+  Events:
+    InitializationEvents:
+      Initialized:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntityInitialized:
+        m_PersistentCalls:
+          m_Calls: []
+    SpawnEvents:
+      Spawning:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntitySpawned:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 2100088034}
+            m_MethodName: OnSpawn
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    DespawnEvents:
+      DespawnedAll:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntityDespawned:
+        m_PersistentCalls:
+          m_Calls: []
+    TerminationEvents:
+      Terminated:
+        m_PersistentCalls:
+          m_Calls: []
+      OnEntityTerminated:
+        m_PersistentCalls:
+          m_Calls: []
 --- !u!1 &5323294734169727486
 GameObject:
   m_ObjectHideFlags: 0
