@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,21 +17,26 @@ namespace JacobHomanics.Core.PoolManagement
         public enum OverflowType { Expandable, Recycable }
         public OverflowType overflowType;
 
+        [Tooltip("DO NOT alter during gameplay")]
+        public enum StorageType { Queue, List }
+        public StorageType storageType;
 
         [Header("Events")]
         public UnityEvent<Pool, PoolObject[]> OnInitialize = new();
         public UnityEvent<Pool, PoolObject[]> OnSpawn = new();
         public UnityEvent<Pool, PoolObject> OnDespawn = new();
 
-        // public List<PoolObject> standbyObjects = new();
-        public Queue<PoolObject> standbyObjects = new();
+        public List<PoolObject> standbyObjectsList = new();
+        public Queue<PoolObject> standbyObjectsQueue = new();
+
         public List<PoolObject> activeObjects = new();
 
         public IEnumerable<PoolObject> AllObjects
         {
             get
             {
-                foreach (var obj in standbyObjects) yield return obj;
+                foreach (var obj in standbyObjectsList) yield return obj;
+                foreach (var obj in standbyObjectsQueue) yield return obj;
                 foreach (var obj in activeObjects) yield return obj;
             }
         }
@@ -56,10 +62,13 @@ namespace JacobHomanics.Core.PoolManagement
                 var instance = Instantiate(poolObject);
                 instance.Initialize(this);
                 initializedObjects[i] = instance;
-                standbyObjects.Enqueue(instance);
+
+                if (storageType == StorageType.Queue)
+                    standbyObjectsQueue.Enqueue(instance);
             }
 
-            // standbyObjects.AddRange(initializedObjects.ToList());
+            if (storageType == StorageType.List)
+                standbyObjectsList.AddRange(initializedObjects.ToList());
 
             OnInitialize?.Invoke(this, initializedObjects);
         }
@@ -72,7 +81,9 @@ namespace JacobHomanics.Core.PoolManagement
                 obj.Terminate();
             }
 
-            standbyObjects.Clear();
+            if (storageType == StorageType.Queue)
+                standbyObjectsQueue.Clear();
+
             activeObjects.Clear();
         }
 
@@ -95,7 +106,15 @@ namespace JacobHomanics.Core.PoolManagement
 
             for (int i = 0; i < num; i++)
             {
-                if (standbyObjects.Count <= 0)
+
+                ICollection collection = null;
+
+                if (storageType == StorageType.Queue)
+                    collection = standbyObjectsQueue;
+                if (storageType == StorageType.List)
+                    collection = standbyObjectsList;
+
+                if (collection.Count <= 0)
                 {
                     if (overflowType == OverflowType.Expandable)
                     {
@@ -107,12 +126,20 @@ namespace JacobHomanics.Core.PoolManagement
                     }
                 }
 
-                PoolObject obj = standbyObjects.Dequeue(); // Cache the object reference
+                PoolObject obj = null;
 
-                // PoolObject obj = standbyObjects[0]; // Cache the object reference
-                // standbyObjects.RemoveAt(0);         // Remove it from the pool
-                Spawn(obj);                         // Perform spawn operation
-                spawnedObjects.Add(obj);            // Track spawned object
+                if (storageType == StorageType.Queue)
+                    obj = standbyObjectsQueue.Dequeue();
+
+
+                if (storageType == StorageType.List)
+                {
+                    obj = standbyObjectsList[0];
+                    standbyObjectsList.RemoveAt(0);
+                }
+
+                Spawn(obj);
+                spawnedObjects.Add(obj);
             }
 
             OnSpawn?.Invoke(this, spawnedObjects.ToArray());
@@ -126,8 +153,12 @@ namespace JacobHomanics.Core.PoolManagement
 
         public void Despawn(PoolObject poolObject)
         {
-            standbyObjects.Enqueue(poolObject);
-            // standbyObjects.Add(poolObject);
+            if (storageType == StorageType.Queue)
+                standbyObjectsQueue.Enqueue(poolObject);
+
+            if (storageType == StorageType.List)
+                standbyObjectsList.Add(poolObject);
+
             activeObjects.Remove(poolObject);
             poolObject.Despawn();
             OnDespawn?.Invoke(this, poolObject);
