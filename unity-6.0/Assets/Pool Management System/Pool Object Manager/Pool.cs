@@ -122,7 +122,13 @@ namespace JacobHomanics.Core.PoolManagement
                     }
                     else if (overflowType == OverflowType.Recycable)
                     {
-                        Despawn(activeObjects[0]);
+                        if (storageType == StorageType.Queue)
+                            standbyObjectsQueue.Enqueue(activeObjects[0]);
+
+                        if (storageType == StorageType.List)
+                            standbyObjectsList.Add(activeObjects[0]);
+
+                        activeObjects.Remove(poolObject);
                     }
                 }
 
@@ -151,17 +157,17 @@ namespace JacobHomanics.Core.PoolManagement
             poolObject.Spawn();
         }
 
-        public void Despawn(PoolObject poolObject)
-        {
-            if (storageType == StorageType.Queue)
-                standbyObjectsQueue.Enqueue(poolObject);
+        // public void Despawn(PoolObject poolObject)
+        // {
+        //     if (storageType == StorageType.Queue)
+        //         standbyObjectsQueue.Enqueue(poolObject);
 
-            if (storageType == StorageType.List)
-                standbyObjectsList.Add(poolObject);
+        //     if (storageType == StorageType.List)
+        //         standbyObjectsList.Add(poolObject);
 
-            activeObjects.Remove(poolObject);
-            poolObject.Despawn();
-            OnDespawn?.Invoke(this, poolObject);
-        }
+        //     activeObjects.Remove(poolObject);
+        //     poolObject.Despawn();
+        //     OnDespawn?.Invoke(this, poolObject);
+        // }
     }
 }
