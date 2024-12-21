@@ -18,6 +18,11 @@ namespace JacobHomanics.Core.PoolManagement
 		}
 
 		[ContextMenu("Spawn")]
+		public void SpawnSelf()
+		{
+			Pool.Spawn(this);
+		}
+
 		public void Spawn()
 		{
 			events.OnSpawn?.Invoke(this);
